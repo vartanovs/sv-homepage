@@ -1,0 +1,19 @@
+{
+  "name": "sv-homepage",
+  "version": "1.0.0",
+  "description": "Personal Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vartanovs/sv-homepage.git"
+  },
+  "author": "Serge Vartanov <vartanov.s@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vartanovs/sv-homepage/issues"
+  },
+  "homepage": "https://github.com/vartanovs/sv-homepage#readme"
+}

@@ -1,0 +1,23 @@
+# command to run:
+# docker-compose -f docker-comp-dev.yml up
+
+# This will start sv-homepage-dependencies
+# and run 'npm run dev'
+
+version: "3"
+services:
+
+  dev:
+    image: vartanovs/sv-homepage-dependencies
+    container_name: "sv-homepage-dev"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    command: ["dev"]
+    
+  # shared volumes for development
+  volumes:
+    # dev-db-volume:
+    node_modules:

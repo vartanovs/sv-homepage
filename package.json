@@ -4,7 +4,26 @@
   "description": "Personal Portfolio",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "build:dev": "NODE_ENV=development webpack --config ./webpack/dev.config.js",
+    "build:prod": "NODE_ENV=production webpack --config ./webpack/prod.config.js",
+    "dep-add": "bash ./scripts/dep-add.sh",
+    "dep-update": "bash ./scripts/dep-update.sh",
+    "docker-build:dev": "docker-compose run --rm --service-ports build-dev",
+    "docker-build:prod": "docker-compose run --rm --service-ports build-prod",
+    "docker-dev": "docker-compose -f docker-comp-dev.yml up",
+    "docker-dev:hot": "docker-compose -f docker-comp-dev.yml -f docker-comp-dev-hot.yml up",
+    "docker-image-build": "docker build -t vartanovs/sv-homepage-dependencies -f Dockerfile-dev .",
+    "docker-image-remove": "docker image rm vartanovs/sv-homepage-dependencies --force",
+    "docker-remove-containers": "docker rm $(docker ps -a -q -f 'name=sv-homepage') --force",
+    "docker-remove-images": "docker rmi $(docker images vartanovs/*sv-homepage* -q) --force",
+    "docker-remove-volumes": "docker volume rm $(docker volume ls -q -f name=sv-homepage) --force",
+    "docker-remove-all:danger": "docker rm $(docker ps -a -q -f 'name=sv-homepage') --force && docker rmi $(docker images vartanovs/*sv-homepage* -q) --force && docker volume rm $(docker volume ls -q -f name=sv-homepage) --force && exit",
+    "docker-stop": "docker stop $(docker ps -a -q --filter status=running)",
+    "docker-test": "docker-compose -f docker-comp-test.yml up --abort-on-container-exit",
+    "test": "NODE_ENV=test jest",
+    "test-coverage": "NODE_ENV=test jest --coverage",
+    "test-watch": "NODE_ENV=test jest --watch",
+    "test-updateSnap": "NODE_ENV=development jest --updateSnapshot"
   },
   "repository": {
     "type": "git",

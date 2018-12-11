@@ -1,0 +1,16 @@
+# command to run:
+# docker-compose -f docker-comp-dev.yml -f docker-comp-dev-hot up
+
+# This will start sv-homepage-depenencies
+# and run 'npm run dev:hot'
+
+# node the use of 2 '-f' in command. Second file overwrites the first one
+
+version: "3"
+services:
+
+  dev:
+    container_name: "sv-homepage-dev-hot"
+    ports:
+      - "8080:8080"
+    command: ["dev:hot"]

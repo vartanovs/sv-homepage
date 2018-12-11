@@ -1,0 +1,23 @@
+# command to run:
+# docker-compose -f docker-comp-test.yml up
+
+# This will start sv-homepage container
+# and run 'npm run test'
+
+version: "3"
+services:
+
+  test:
+    image: vartanovs/sv-homepage-dependencies
+    container_name: "sv-homepage-test"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src/app
+      - node_modules_test:/usr/src/app/node_modules
+    command: ["test-coverage"]
+  
+  # shared volumes
+  volumes:
+    # test-db-volume:
+    node_modules_test:

@@ -19,9 +19,11 @@ services:
       - "3000:3000"
     volumes:
       - ./:/usr/src/app
+      - build:/usr/src/app/build
       - node_modules:/usr/src/app/node_modules
-    command: /bin/bash -c ". /root/.nvm/nvm.sh && npm run dev-server"
+    command: /bin/bash -c ". /root/.nvm/nvm.sh && npm run build:dev && npm run dev-server"
 
 # shared volumes for development
 volumes:
+  build:
   node_modules:

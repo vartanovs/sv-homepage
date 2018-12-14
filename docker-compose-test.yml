@@ -9,11 +9,13 @@ services:
       - "3000:3000"
     volumes:
       - ./:/usr/src/app
+      - build:/usr/src/app/build
       - coverage:/usr/src/app/coverage
       - node_modules:/usr/src/app/node_modules
-    command: /bin/bash -c ". /root/.nvm/nvm.sh && npm run test-coverage"
+    command: /bin/bash -c ". /root/.nvm/nvm.sh && npm run build:dev && npm run test-coverage"
   
 # shared volumes
 volumes:
+  build:
   coverage:
   node_modules:

@@ -16,6 +16,7 @@
     "docker-dev:hot": "docker-compose -f docker-compose-dev-hot.yml up",
     "docker-image-build-dep": "docker build -t vartanovs/sv-homepage-dependencies -f dev.Dockerfile .",
     "docker-image-remove-dep": "docker image rm vartanovs/sv-homepage-dependencies --force",
+    "docker-prune": "docker container prune",
     "docker-remove-containers": "docker rm $(docker ps -a -q -f 'name=sv-homepage') --force",
     "docker-remove-images": "docker rmi $(docker images vartanovs/*sv-homepage* -q) --force",
     "docker-remove-volumes": "docker volume rm $(docker volume ls -q -f name=sv-homepage) --force",

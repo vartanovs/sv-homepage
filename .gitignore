@@ -4,5 +4,8 @@ node_modules/
 # Test coverage directory
 coverage/
 
+# Distribution Files
+build/
+
 # dotenv environment variables file
 .env

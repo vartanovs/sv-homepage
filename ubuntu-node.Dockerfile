@@ -25,7 +25,8 @@ ENV NODE_PATH $HOME/.nvm/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH $HOME/.nvm/versions/node/v$NODE_VERSION/bin:$PATH
 
 # confirm installation
-RUN source $HOME/.nvm/nvm.sh \
+RUN . $HOME/.nvm/nvm.sh \
   && nvm --version \
   && node -v \
   && npm -v
+  

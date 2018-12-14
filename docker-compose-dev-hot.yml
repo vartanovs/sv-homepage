@@ -7,10 +7,10 @@
 # node the use of 2 '-f' in command. Second file overwrites the first one
 
 version: "3"
-services:
 
+services:
   dev:
     container_name: "sv-homepage-dev-hot"
     ports:
       - "8080:8080"
-    command: ["dev:hot"]
+    command: /bin/bash -c ". /root/.nvm/nvm.sh && npm run dev:hot"

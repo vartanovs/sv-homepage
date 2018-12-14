@@ -1,4 +1,4 @@
-# 1. Enter docker container in bash and run npm install to update package.json
+# 1. Enter docker container in bash and run npm uninstall to update package.json
 # 2. Remove image from local environment
 # 3. Rebuild image with updated package.json
 # 4. Push image to Docker Hub
@@ -20,18 +20,18 @@ elif [ ! -z $1 ]; then
 # Else, inform user of syntax error
 else
   echo -e "\033[00;31mMake sure to format the command properly:\033[0m"
-  echo "- Dev dependency(ies): 'npm run dep-add dev <PACKAGE1> <PACKAGE2> ...'."
-  echo "- Regular depencency(ies): 'npm run dep-add <PACKAGE1> <PACKAGE2> ...'."
+  echo "- Dev dependency(ies): 'npm run dep-remove dev <PACKAGE1> <PACKAGE2> ...'."
+  echo "- Regular depencency(ies): 'npm run dep-remove <PACKAGE1> <PACKAGE2> ...'."
   exit 1
 fi
 
 # Enter into Docker container in bash and run npm install --save or --save-dev
 if [ $DEV = true ]; then
-  echo -e "\033[1;36mInstalling '$PACKAGE' in docker container as dev dependency(ies)...\033[0m"
-  docker-compose run --rm --service-ports bash /bin/bash -c ". /root/.nvm/nvm.sh && npm install --save-dev $PACKAGE" || { echo -e "\033[00;31mnpm install failed\033[0m" ; exit 1; }
+  echo -e "\033[1;36mUninstalling '$PACKAGE' in docker container as dev dependency(ies)...\033[0m"
+  docker-compose run --rm --service-ports bash /bin/bash -c ". /root/.nvm/nvm.sh && npm uninstall --save-dev $PACKAGE" || { echo -e "\033[00;31mnpm uninstall failed\033[0m" ; exit 1; }
 else
-  echo -e "\033[1;36mInstalling '$PACKAGE' in docker container as dependency(ies)... \033[0m"
-  docker-compose run --rm --service-ports bash /bin/bash -c ". /root/.nvm/nvm.sh && npm install --save $PACKAGE" || { echo -e "\033[00;31mnpm install failed\033[0m" ; exit 1; }
+  echo -e "\033[1;36mUninstalling '$PACKAGE' in docker container as dependency(ies)... \033[0m"
+  docker-compose run --rm --service-ports bash /bin/bash -c ". /root/.nvm/nvm.sh && npm uninstall --save $PACKAGE" || { echo -e "\033[00;31mnpm uninstall failed\033[0m" ; exit 1; }
 fi
 
 echo -e "\033[1;32mpackage.json has been updated\033[0m"

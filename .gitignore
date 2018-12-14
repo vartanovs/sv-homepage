@@ -1,8 +1,8 @@
-# Dependency directories
+# Dependency directory
 node_modules/
 
-# TypeScript v1 declaration files
-typings/
+# Test coverage directory
+coverage/
 
 # dotenv environment variables file
 .env

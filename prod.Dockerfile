@@ -7,11 +7,11 @@ WORKDIR /usr/src/app
 # npm install into /usr/src/app
 # A wildcard is used to ensure package.json AND package-lock.json are copied
 COPY package*.json /usr/src/app/
-RUN source $HOME/.nvm/nvm.sh && npm install
+RUN . $HOME/.nvm/nvm.sh && npm install
 
 # copy webapp files to container & build production
 COPY . /usr/src/app/
-RUN npm run build:prod
+RUN . $HOME/.nvm/nvm.sh && npm run build:prod
 
 # Set application's default port
 EXPOSE 3000

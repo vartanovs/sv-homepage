@@ -1,4 +1,5 @@
 version: "3"
+
 services:
   # To be run from Travis CI ->
   # docker-compose run --rm --service-ports start-prod
@@ -8,7 +9,7 @@ services:
       - "3000:3000"
     volumes:
       - /usr/src/app
-    command: npm start
+    command: /bin/bash -c ". /root/.nvm/nvm.sh npm start"
   # Bash - allows for running scripts in container
   # docker-compose run --rm service-ports bash
   bash:
@@ -19,4 +20,4 @@ services:
     volumes:
       - ./:/usr/src/app
       - /usr/src/app/node_modules
-    # command: '/bin/bash'
+    command: '/bin/bash'

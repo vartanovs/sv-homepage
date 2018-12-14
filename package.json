@@ -9,12 +9,11 @@
     "dep-add": "bash ./scripts/dep-add.sh",
     "dep-remove": "bash ./scripts/dep-remove.sh",
     "dep-update": "bash ./scripts/dep-update.sh",
-    "dev": "NODE_ENV=development nodemon ./server",
-    "dev:hot": "NODE_ENV=development nodemon ./server",
+    "dev-server": "NODE_ENV=development nodemon ./server",
+    "dev-client": "webpack-dev-server --config ./webpack/dev.config.js --hot",
     "docker-build:dev": "docker-compose run --rm --service-ports build-dev",
     "docker-build:prod": "docker-compose run --rm --service-ports build-prod",
-    "docker-dev": "docker-compose -f docker-compose-dev.yml up",
-    "docker-dev:hot": "docker-compose -f docker-compose-dev.yml -f docker-compose-dev-hot.yml up",
+    "docker-dev:hot": "docker-compose -f docker-compose-dev-hot.yml up",
     "docker-image-build-dep": "docker build -t vartanovs/sv-homepage-dependencies -f dev.Dockerfile .",
     "docker-image-remove-dep": "docker image rm vartanovs/sv-homepage-dependencies --force",
     "docker-remove-containers": "docker rm $(docker ps -a -q -f 'name=sv-homepage') --force",
@@ -41,12 +40,15 @@
   "homepage": "https://github.com/vartanovs/sv-homepage#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "react": "^16.6.3"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",

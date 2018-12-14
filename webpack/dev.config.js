@@ -24,6 +24,7 @@ module.exports = {
     compress: true,                                   // GZIP Compression
     contentBase: path.resolve(__dirname, '../build'), // Serve static files from /build
     historyApiFallback: true,                         // Redirect 404s to /index.html
+    host: '0.0.0.0',                                  // Bind host for Docker compatibility
     proxy: {
       '/api': {
         target: 'http://localhost:3000',              // Proxy :8080/api requests to 3000
@@ -48,5 +49,5 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json']              // Auto resolve certain extensions
   },
-  plugins: [HTMLWebPackPlugin],                       // Customize webpack build process
+  plugins: [HTMLWebpackPlugin],                       // Customize webpack build process
 };

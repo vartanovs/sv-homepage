@@ -1,9 +1,9 @@
-# This will start sv-homepage-dependencies and run 'npm run dev'
+# This will start sv-homepage-dependencies and run 'npm run dev-server'
 
 version: "3"
 
 services:
-  dev:
+  server:
     image: vartanovs/sv-homepage-dependencies
     container_name: "sv-homepage-dev"
     ports:
@@ -11,8 +11,8 @@ services:
     volumes:
       - ./:/usr/src/app
       - node_modules:/usr/src/app/node_modules
-    command: /bin/bash -c ". /root/.nvm/nvm.sh && npm run dev"
+    command: /bin/bash -c ". /root/.nvm/nvm.sh && npm run dev-server"
 
-    # shared volumes for development
+# shared volumes for development
 volumes:
   node_modules:

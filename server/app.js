@@ -5,9 +5,10 @@
 
 // Start server by invoking express
 const express = require('express');
+const path = require('path');
 const app = express();
 
 // TODO: REMOVE Test Root Route
-app.get('/', (req, res) => res.status(200).send('Hello World!'))
+app.use(express.static(path.resolve(__dirname, '../build')));
 
 module.exports = app;

@@ -37,5 +37,5 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json']              // Auto resolve certain extensions
   },
-  plugins: [HTMLWebPackPlugin],                       // Customize webpack build process
+  plugins: [HTMLWebpackPlugin],                       // Customize webpack build process
 };

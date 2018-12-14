@@ -9,5 +9,5 @@ WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN source $HOME/.nvm/nvm.sh && npm install
 
-# Set application's default port
-EXPOSE 3000
+# Set application's default ports
+EXPOSE 3000 8080

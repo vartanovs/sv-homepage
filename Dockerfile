@@ -23,4 +23,4 @@ RUN npm run build:prod
 EXPOSE 3000
 
 # Run bash shell
-CMD [ "/bin/bash" ]
+CMD [ "npm", "start" ]

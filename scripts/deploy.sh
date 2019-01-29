@@ -6,7 +6,7 @@ docker --version
 
 # Build docker image based on Dockerfile
 # NO SPACES between scopes e.g. scopes-1,scopes-2,scopes-3
-docker build -t vartanovs/sv-homepage -f .
+docker image build -t vartanovs/sv-homepage -f .
 
 # Push built image to ECS
 docker tag vartanovs/sv-homepage:latest 436925851720.dkr.ecr.us-west-2.amazonaws.com/sv-homepage:$TRAVIS_COMMIT

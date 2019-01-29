@@ -1,0 +1,27 @@
+# This will start two sv-homepage-dev containers named sv-homepage-client and sv-homepage-server
+# sv-homepage-client will run "npm run dev-client" which will initiate the Webpack Dev Server
+# sv-homepage-server will run "npm run dev-server" which will initiate Nodemon
+# command to run: docker-compose -f docker/docker-compose-dev.yml up
+# NPM Script: npm run docker-dev
+
+version: "3"
+
+services:
+  client:
+    container_name: "sv-homepage-client"
+    image: vartanovs/sv-homepage-dev
+    ports:
+      - "8080:8080"
+    restart: always
+    volumes:
+      - ../:/usr/src/app
+    command: ["npm", "run", "dev-client"]
+  server:
+    container_name: "sv-homepage-server"
+    image: vartanovs/sv-homepage-dev
+    ports:
+      - "3000:3000"
+    restart: always
+    volumes:
+      - ../:/usr/src/app
+    command: ["npm", "run", "dev-server"]

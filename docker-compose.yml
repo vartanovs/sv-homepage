@@ -1,23 +1,11 @@
+# This will start a sv-homepage container named sv-homepage-dev and run 'npm start'
+# Command to run: docker-compose up
+
 version: "3"
 
 services:
-  # To be run from Travis CI ->
-  # docker-compose run --rm --service-ports start-prod
-  start-prod:
+  prod:
     image: vartanovs/sv-homepage
     ports:
       - "3000:3000"
-    volumes:
-      - /usr/src/app
-    command: /bin/bash -c ". /root/.nvm/nvm.sh npm start"
-  # Bash - allows for running scripts in container
-  # docker-compose run --rm service-ports bash
-  bash:
-    image: vartanovs/sv-homepage-dependencies
-    container_name: "sv-homepage-dev"
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./:/usr/src/app
-      - /usr/src/app/node_modules
-    command: '/bin/bash'
+    command: ["npm", "start"]

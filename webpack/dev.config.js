@@ -1,53 +1,24 @@
 /**
- * @module dev.config.js
- * @description Webpack Configuration for Development Environment
+ * @module webpack/dev.config.js
+ * @description Webpack Development Mode Configuration
  */
 
-const HTMLWebpack = require('html-webpack-plugin');
 const path = require('path');
+const merge = require('webpack-merge');
 
-// HTML Webpack Plugin Configuration
-const HTMLWebpackPlugin = new HTMLWebpack({
-  template: path.resolve(__dirname, '../client/index.html'),
-  filename: './index.html',
-});
+const common = require('./common.config');
 
-module.exports = {
-  mode: 'development',
-  entry: path.resolve(__dirname, '../client/index.jsx'),
-  output: {
-    path: path.resolve(__dirname, '../build'),        // Outbut bundle file to /build
-    filename: 'bundle.js',                            // Bundle file name
-    publicPath: '/',                                  // Specify base path for all assets as root
-  },
+module.exports = merge(common, {
+  mode: 'development',                                  // Built-in optimizations to generate 'dev' bundle
   devServer: {
-    compress: true,                                   // GZIP Compression
-    contentBase: path.resolve(__dirname, '../build'), // Serve static files from /build
-    historyApiFallback: true,                         // Redirect 404s to /index.html
-    host: '0.0.0.0',                                  // Bind host for Docker compatibility
+    compress: true,                                     // GZIP Compression
+    contentBase: path.resolve(__dirname, '../build'),   // Serve static content from ../build
+    historyApiFallback: true,                           // Redirect 404s to /index.html (for React Router)
+    host: '0.0.0.0',                                    // Bind host for Docker compatibility
     proxy: {
-      '/api': {
-        target: 'http://localhost:3000',              // Proxy :8080/api requests to 3000
-      },
+      '/api': 'http://sv-homepage-dev-server:3000/api', // Proxy requests to '8080/api' route
     },
-    port: 8080,                                       // Specify PORT for requests
+    port: 8080,                                         // Specify PORT for dev server requests
   },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)?$/,
-        exclude: /node_modules/,
-        use: ['babel-loader',],
-      },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.json']              // Auto resolve certain extensions
-  },
-  plugins: [HTMLWebpackPlugin],                       // Customize webpack build process
-};
+  devtool: 'source-map',                                // Add meta info to browser devtools for debugging
+});

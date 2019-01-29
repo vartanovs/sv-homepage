@@ -28,17 +28,20 @@ fi
 # Enter into Docker container in bash and run npm install --save or --save-dev
 if [ $DEV = true ]; then
   echo -e "\033[1;36mUninstalling '$PACKAGE' in docker container as dev dependency(ies)...\033[0m"
-  docker-compose run --rm --service-ports bash /bin/bash -c ". /root/.nvm/nvm.sh && npm uninstall --save-dev $PACKAGE" || { echo -e "\033[00;31mnpm uninstall failed\033[0m" ; exit 1; }
+  docker-compose run --rm --service-ports prod npm uninstall --save-dev $PACKAGE || { echo -e "\033[00;31mnpm uninstall failed\033[0m" ; exit 1; }
 else
   echo -e "\033[1;36mUninstalling '$PACKAGE' in docker container as dependency(ies)... \033[0m"
-  docker-compose run --rm --service-ports bash /bin/bash -c ". /root/.nvm/nvm.sh && npm uninstall --save $PACKAGE" || { echo -e "\033[00;31mnpm uninstall failed\033[0m" ; exit 1; }
+  docker-compose run --rm --service-ports prod npm uninstall --save $PACKAGE || { echo -e "\033[00;31mnpm uninstall failed\033[0m" ; exit 1; }
 fi
 
 echo -e "\033[1;32mpackage.json has been updated\033[0m"
-echo -e "\033[1;36mRemoving existing image from local environment...\033[0m"
-docker image rm vartanovs/sv-homepage-dependencies --force
-echo -e "\033[1;36mRebuilding image with updated package.json...\033[0m"
-docker build -t vartanovs/sv-homepage-dependencies -f dev.Dockerfile .
-echo -e "\033[1;36mPushing image to Docker Hub...\033[0m"
-docker push vartanovs/sv-homepage-dependencies
+echo -e "\033[1;36mRemoving existing images from local environment...\033[0m"
+docker image rm vartanovs/sv-homepage --force
+docker image rm vartanovs/sv-homepage-dev --force
+echo -e "\033[1;36mRebuilding images with updated package.json...\033[0m"
+docker image build -t vartanovs/sv-homepage .
+docker image build -t vartanovs/sv-homepage-dev -f dev.Dockerfile .
+echo -e "\033[1;36mPushing images to Docker Hub...\033[0m"
+docker push vartanovs/sv-homepage
+docker push vartanovs/sv-homepage-dev
 echo -e "\033[1;32mDone!\033[0m"

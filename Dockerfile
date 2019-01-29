@@ -21,3 +21,6 @@ RUN npm run build:prod
 
 # Expose default ports
 EXPOSE 3000
+
+# Run bash shell
+CMD [ "/bin/bash" ]

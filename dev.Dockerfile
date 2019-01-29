@@ -18,3 +18,6 @@ COPY . /usr/src/app/
 
 # Expose default ports
 EXPOSE 3000 8080
+
+# Run bash shell
+CMD [ "/bin/bash" ]

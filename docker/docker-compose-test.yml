@@ -11,7 +11,6 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ../:/usr/src/app
       - coverage:/usr/src/app/coverage
     command: ["npm", "run", "test:coverage"]
 

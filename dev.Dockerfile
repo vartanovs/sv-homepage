@@ -16,6 +16,9 @@ RUN npm install
 # Copy webapp files to container
 COPY . /usr/src/app/
 
+# Build development bundle
+RUN npm run build:dev
+
 # Expose default ports
 EXPOSE 3000 8080
 

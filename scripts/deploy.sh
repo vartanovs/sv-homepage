@@ -4,7 +4,7 @@ aws configure set default.region us-west-2
 eval $(aws ecr get-login --no-include-email --region us-west-2)
 docker --version
 
-# Build docker image based on dockerfile-prod
+# Build docker image based on prod.dockerfile
 # NO SPACES between scopes e.g. scopes-1,scopes-2,scopes-3
 docker build -t vartanovs/sv-homepage -f prod.Dockerfile .
 

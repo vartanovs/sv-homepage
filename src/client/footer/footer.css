@@ -1,0 +1,80 @@
+.footer {
+  background: #000000;
+  color: #DDDDDD;
+  font-family: monospace;
+  height: 60px;
+  width: 100%;
+
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Disable anchor tag defaults */
+.footer a{
+  color: inherit;
+}
+
+.footer a:hover{
+  color: inherit;
+}
+
+.footer__left {
+  padding: 0 2vw;
+}
+
+.footer__right {
+  padding: 0 2vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__icon-div {
+  border-radius: 3px;
+  font-size: 18px;
+  height: 25px;
+  margin: 5px;
+  width: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__icon-div:hover {
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+/* Specific styles for each Footer Icon */
+.footer__icon-div-email {
+  border: 1px solid #8C1515;
+  color: #8C1515;
+}
+
+.footer__icon-div-email:hover {
+  background: #8C1515;
+}
+
+.footer__icon-div-github {
+  border: 1px solid #444444;
+  color: #444444;
+}
+
+.footer__icon-div-github:hover {
+  background: #444444;
+}
+
+.footer__icon-div-linkedin {
+  border: 1px solid #006CAC;
+  color: #006CAC;
+}
+
+.footer__icon-div-linkedin:hover {
+  background: #006CAC;
+}

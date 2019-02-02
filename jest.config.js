@@ -13,5 +13,9 @@ module.exports = {
       tsConfig: "tsconfig.json",                      // Use tsconfig for ts-jest
     },
   },
+  moduleNameMapper: {
+    "\\.(css)$": "identity-obj-proxy",                // Mock CSS modules during testing
+
+  },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
 };

@@ -8,6 +8,8 @@ import path from 'path';
 // Import Express Module
 import express, { Request, Response } from 'express';
 
+const HTTP_NOT_FOUND = 404;
+
 // Invoke Express Server
 const app = express();
 
@@ -16,6 +18,6 @@ app.use(express.static(path.resolve(__dirname, '../../build')));
 
 // Respond to all other requests with 404 status and 'route not found' message
 app.use('*',
-  (_: Request, res: Response): Response => res.status(404).send('Route Not Found!'));
+  (_: Request, res: Response): Response => res.status(HTTP_NOT_FOUND).send('Route Not Found!'));
 
 export default app;

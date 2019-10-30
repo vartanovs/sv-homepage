@@ -1,0 +1,5 @@
+# Ignore HTML Files
+src/*.html
+
+# Ignore Test Files
+src/*.test.ts

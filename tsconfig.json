@@ -37,6 +37,6 @@
   ],    
   "include": [
     "./src/**/*.ts",                  // Compile all source code .ts files
-    "./src/**/*.tsx"                  // Compile all source code .tsx files
+    "./src/**/*.tsx", "src/index.test.ts"                  // Compile all source code .tsx files
   ]
 }
